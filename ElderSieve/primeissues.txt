@@ -1,0 +1,3 @@
+A274806 --all numbers past the first three terms DR 3,6,9 and divisibile by 9
+
+A236175 --Prime gap pattern for sieve of eratosthenes
