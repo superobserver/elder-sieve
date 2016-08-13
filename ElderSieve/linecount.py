@@ -1,6 +1,6 @@
 import collections
 
-#run this program from command line as "pylinecount.py >> ballard.txt
+#run this program from command line as "pylinecount.py >> count.txt
 
 
 with open('composite2.csv') as infile:
