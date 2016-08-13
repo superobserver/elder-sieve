@@ -503,13 +503,13 @@ if new_test_var == "cousins":
             #webbrowser.get('firefox').open("http://oeis.org/A224854")
             execfile("cousin7_11.py") 
         except:
-            print "There will be no link to OEIS. See: http://oeis.org/A224854"
+            #print "There will be no link to OEIS. See: http://oeis.org/A224854"
             execfile("cousin7_11.py")
 ######################################
     if new_cousin_var == "13+17":
         #execfile("cousin13_17.py") 
         try:
-            webbrowser.get('firefox').open("http://oeis.org/A224855")
+            #webbrowser.get('firefox').open("http://oeis.org/A224855")
             execfile("cousin13_17.py") 
         except:
             #print "There will be no link to OEIS. See: http://oeis.org/A224855"
@@ -530,7 +530,7 @@ if new_test_var == "cousins":
             #webbrowser.get('firefox').open("http://oeis.org/A224857")
             execfile("cousin37_41.py") 
         except:
-            print "There will be no link to OEIS. See: http://oeis.org/A224857"
+            #print "There will be no link to OEIS. See: http://oeis.org/A224857"
             execfile("cousin37_41.py")
 ######################################
     if new_cousin_var == "43+47":
@@ -557,7 +557,7 @@ if new_test_var == "cousins":
             #webbrowser.get('firefox').open("http://oeis.org/A224862")
             execfile("cousin67_71.py") 
         except:
-            print "There will be no link to OEIS. See: http://oeis.org/A224862"
+            #print "There will be no link to OEIS. See: http://oeis.org/A224862"
             execfile("cousin67_71.py")
 ######################################
     if new_cousin_var == "73+77":
