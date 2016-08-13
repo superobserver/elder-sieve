@@ -9,3 +9,6 @@ We have developed an algorithm that starts with a set of sequence generator func
 
 In order to recover a base 10 number one needs to multiply the output by 90 and add a related constant. Many, though not all, of our sequences correspond with OEIS database entries. We offer the following programs in the hopes of furthering awareness of this unique sieve and of stimulating discussions regarding the prime numbers.
 
+To run the program, load all python scripts into the same directory and type 'python ElderSieve.py' into a terminal. The raw output (the really interesting stuff, to be honest) is avaiable in composite1.csv. 
+
+We are continuing to improve the program and adding new features as time permits. 
