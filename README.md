@@ -12,3 +12,5 @@ In order to recover a base 10 number one needs to multiply the output by 90 and 
 To run the program, load all python scripts into the same directory and type 'python ElderSieve.py' into a terminal. The raw output (the really interesting stuff, to be honest) is available in composite1.csv. 
 
 We are continuing to improve the program and adding new features as time permits. 
+
+*There is a bug in the sorting for composite7.py that results with an erroneous inclusion. We are tracking this down and will fix it as soon as we determine the root cause of the issue. 
