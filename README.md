@@ -14,3 +14,5 @@ To run the program, load all python scripts into the same directory and type 'py
 We are continuing to improve the program and adding new features as time permits. 
 
 *There is a bug in the sorting for composite7.py that results with an erroneous inclusion. We are tracking this down and will fix it as soon as we determine the root cause of the issue. The raw data in the composite1.csv output file is correct.
+
+*The prime list generate by composite1.py considers the number 1 to be prime. Aside from this artifact, all remaining data elements are correct against A181732
