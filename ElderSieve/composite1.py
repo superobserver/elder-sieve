@@ -371,3 +371,5 @@ with open("composite2.ods") as f:
     for i in xrange(0, 37188):
         if str(i) not in x:
             print ("{} is prime".format(i))
+
+execfile("ElderSieve.py")
