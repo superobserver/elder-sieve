@@ -41,7 +41,7 @@ var_59 = [y * (59 + (90*z)) for y in var_29 for z in xrange (0, limit2)]
 print var_59
 
 var_59a = [59 + (90*x) for x in xrange(0, limit)]
-var_29a = [y * (29 + (90*z)) for y in var_59a for z in xrange(0, limit)]
+var_29a = [y * (29 + (90*z)) for y in var_59a for z in xrange(0, limit2)]
 print var_29a
 
 #composites for 13,7 
