@@ -74,8 +74,6 @@ for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 
 
 
 #print a  
-
-#print a[0]
 if a[0] == 0:
   list_A224854 = [i for i in a if i !=0]
   list_A224854.insert(0, 0)
