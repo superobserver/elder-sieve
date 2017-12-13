@@ -61,11 +61,11 @@ if a[0] == 0:
   list_A201804 = [i for i in a if i !=0]
   list_A201804.insert(0, 0)
   print list_A201804
-  print "These are the first %d terms of Sloane's A224855." % len(list_A201804)
+  print "These are the first %d terms of Sloane's A201804." % len(list_A201804)
 if a[0] > 0:
   list_A201804 = [i for i in a if i !=0]
   print list_A201804
-  print "These are the first %d terms of Sloane's A224855." % len(list_A201804)
+  print "These are the first %d terms of Sloane's A201804." % len(list_A201804)
   
 # #Use this code to search for Arithmetic Progressions of Twin Primes.
 # A = list_A201804    # in sorted order
