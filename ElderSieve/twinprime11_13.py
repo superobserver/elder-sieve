@@ -1,522 +1,99 @@
 #!/usr/local/env python #python 2.7
-#Integration leaves residue sequence A201804
-import sys
-import csv
-import time
-import subprocess
+#Sieve for generating sequence A224854
 
-dump = open("composite1.csv", "w")
-new_test = 40000
+new_test = 1000000
+a = range(0, new_test)
 
 
-
-####################################################
-#new
-# dr2_ld1_11_91(x) 
-#11, 203, 575, 1127, 1859, 2771, 3863, 5135, 6587, 8219
-def dr2_ld1_11_91(x):
-  y = 90*(x*x) - 78*x - 1 
-  if y > new_test:
+def drLD_min_min(x, l, m, z, o):      
+  y = 90*(x*x) - l*x - m 
+  if y < new_test:
+    #print y, x
+    a[y] = 0
+  else:
+    return
+  for n in xrange (1, new_test):
+    new_y = y+((z+(90*(x-1)))*n)
+    if new_y < new_test:
+      a[new_y] = 0
+    new2_y = y+((o+(90*(x-1)))*n)   
+    if new2_y < new_test:   
+      a[new2_y] = 0      
+    if new_y > new_test:
       return
-  #print "11,91", y
-  dump.write(str(y) + "\n")
-  for n in range(1, new_test):
-    new_y = y+((11+(90*(x-1)))*n) 
-    new2_y = y+((91+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+    else:
+      pass
 
-
-
-###################################################
-
-#6, 144, 462, 960, 1638, 2496, 3534, 4752, 6150
-#new
-def dr2_ld1_19_29(x):
-  y = 90*(x*x) - 132*x + 48
-  if y > new_test:
+def drLD_min_plus(x, l, m, z, o):      
+  y = 90*(x*x) - l*x + m 
+  if y < new_test:
+    a[y] = 0
+  else:
     return
-  dump.write(str(y) + "\n") 
-  for n in range (1, new_test):
-    new_y = y+((19+(90*(x-1)))*n)
-    new2_y = y+((29+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+  for n in xrange (1, new_test):
+    new_y = y+((z+(90*(x-1)))*n)
+    if new_y < new_test:
+      a[new_y] = 0
+    new2_y = y+((o+(90*(x-1)))*n)   
+    if new2_y < new_test:    
+      a[new2_y] = 0      
+    if new_y > new_test:
+      return
+    else:
+      pass
 
 
-###################################################
-#34, 244, 634, 1204, 1954, 2884, 3994, 5284
-#new
-def dr2_ld1_37_83(x):
-  y = 90*(x*x) - 60*x + 4
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((37+(90*(x-1)))*n)
-    new2_y = y+((83+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-##################################################
-
-##################################################
-#38, 248, 638, 1208, 1958, 2888, 3998, 5288, 6758
-#new 
-def dr2_ld1_47_73(x):
-  y = 90*(x*x) - 60*x + 8 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((47+(90*(x-1)))*n)
-    new2_y = y+((73+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################	  
-
-###################################################
-#11, 191, 551, 1091, 1811, 2711, 3791, 5051, 6491
-#new
-def dr2_ld1_13_77(x):
-  y = 90*(x*x) - 90*x + 11  
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((13+(90*(x-1)))*n)
-    new2_y = y+((77+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-####################################################
-
-####################################################
-#14, 176, 518, 1040, 1742, 2624, 3686, 4928, 6350
-#new
-def dr2_ld1_31_41(x):
-  y = 90*(x*x) - 108*x + 32
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((31+(90*(x-1)))*n) 
-    new2_y = y+((41+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
- ######################################################
+for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 = 336; 100,000,000 = 1056; 1,000,000,000 = 
  
- ######################################################
-
  
-#32, 230, 608, 1166, 1904, 2822, 3920, 5198
-#new
-def dr2_ld1_49_59(x):
-  y = 90*(x*x) - 72*x + 14
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((49+(90*(x-1)))*n)
-    new2_y = y+((59+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-#############################################################
+    drLD_min_min(x, 78, 1, 11, 91)   #11,91
+    drLD_min_plus(x, 132, 48, 19, 29) #19,29
+    drLD_min_plus(x, 60, 4, 37, 83)   #37,83
+    drLD_min_plus(x, 60, 8, 47, 73)   #47,73
+    drLD_min_plus(x, 90, 11, 13, 77)  #13,77
+    drLD_min_plus(x, 108, 32, 31, 41) #31,41
+    drLD_min_plus(x, 72, 14, 49, 59)  #49,59
+    drLD_min_plus(x, 90, 17, 23, 67)  #23,67
+    drLD_min_plus(x, 120, 34, 7, 53)  #7,53
+    drLD_min_plus(x, 120, 38, 17, 43) #17,43
+    drLD_min_plus(x, 48, 6, 61, 71)   #61,71
+    drLD_min_plus(x, 12, 0, 79, 89)   #79,89
 
-##############################################################
-
-#17, 197, 557, 1097, 1817, 2717, 3797, 5057, 6497, 8117, 9917
-#new
-def dr2_ld1_23_67(x):
-  y = 90*(x*x) - 90*x + 17
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((23+(90*(x-1)))*n) 
-    new2_y = y+((67+(90*(x-1)))*n)
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
- 
-#4, 154, 484, 994, 1684, 2554, 3604, 4834, 6244
-#new
-def dr2_ld1_7_53(x):
-  y = 90*(x*x) - 120*x + 34
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((7+(90*(x-1)))*n)
-    new2_y = y+((53+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
-
-#8, 158, 488, 998, 1688, 2558, 3608, 4838, 6248, 7838,
-#new
-def dr2_ld1_17_43(x):
-  y = 90*(x*x) - 120*x + 38 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((17+(90*(x-1)))*n) 
-    new2_y = y+((43+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-########################################################
-
-#48, 270, 672, 1254, 2016, 2958, 4080, 5382, 6864, 8526
-#new
-def dr2_ld1_61_71(x):
-  y = 90*(x*x) - 48*x + 6 
-  if y > new_test:
-    return
-  #print y, "7,67"
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((61+(90*(x-1)))*n)
-    new2_y = y+((71+(90*(x-1)))*n) 
-    #print new_y, "61"
-    #print new2_y, "71"
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-######################################################
-
-#####################################################
-
-#78, 336, 774, 1392, 2190, 3168, 4326, 5664, 7182, 8880
-#new
-def dr2_ld1_79_89(x):
-  y = 90*(x*x) - 12*x  
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((79+(90*(x-1)))*n)
-    new2_y = y+((89+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-   
-#########################################################
-
-####################################################
-#new 
-#13, 207, 581, 1135, 1869, 2783, 3877, 5151, 6605, 8239
-def dr4_ld3_13_91(x):
-  y = 90*(x*x) - 76*x - 1 
-  if y > new_test:
-    return
-  #print "13,91", y
-  dump.write(str(y) + "\n")
-  for n in range(1, new_test):
-    new_y = y+((13+(90*(x-1)))*n) 
-    new2_y = y+((91+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+    drLD_min_min(x, 76, 1, 13, 91)   #13,91
+    drLD_min_plus(x, 94, 18, 19, 67)  #19,67
+    drLD_min_plus(x, 94, 24, 37, 49)  #37,49
+    drLD_min_plus(x, 76, 11, 31, 73)  #31,73
+    drLD_min_plus(x, 86, 6, 11, 83)   #11,83
+    drLD_min_plus(x, 104, 29, 29, 47) #29,47
+    drLD_min_plus(x, 86, 14, 23, 71)  #23,71
+    drLD_min_plus(x, 86, 20, 41, 53)  #41,53
+    drLD_min_plus(x, 104, 25, 17, 59) #17,59
+    drLD_min_plus(x, 14, 0, 77, 89)   #77,89
+    drLD_min_plus(x, 94, 10, 7, 79)   #7,79
+    drLD_min_plus(x, 76, 15, 43, 61)  #43,61
 
 
-###################################################
-#new
-#14, 190, 546, 1082, 1798, 2694, 3770, 5026, 6462, 8078
-def dr4_ld3_19_67(x):
-  y = 90*(x*x) - 94*x + 18
-  if y > new_test:
-    return
-  for n in range (1, new_test):
-    new_y = y+((19+(90*(x-1)))*n)
-    new2_y = y+((67+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+#print a  
+list_A224854 = [i for i in a if i !=0]
+print list_A224854 
+print "These are the first %d terms of Sloane's A224854." % len(list_A224854)
 
-
-###################################################
-#20, 196, 552, 1088, 1804, 2700, 3776, 5032, 6468, 8084
-#new
-def dr4_ld3_37_49(x):
-  y = 90*(x*x) - 94*x + 24
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((37+(90*(x-1)))*n)
-    new2_y = y+((49+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-##################################################
-
-
-##################################################
-#25, 219, 593, 1147, 1881, 2795, 3889, 5163, 6617, 8251
-#new 
-def dr4_ld3_31_73(x):
-  y = 90*(x*x) - 76*x + 11 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((31+(90*(x-1)))*n)
-    new2_y = y+((73+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################	  
-
-
-###################################################
-#10, 194, 558, 1102, 1826, 2730, 3814, 5078, 6522, 8146, 9950
-#new
-def dr4_ld3_11_83(x):
-  y = 90*(x*x) - 86*x + 6  
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((11+(90*(x-1)))*n)
-    new2_y = y+((83+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-####################################################
-
-
-####################################################
-#15, 181, 527, 1053, 1759, 2645, 3711, 4957, 6383, 7989, 9775
-#new
-def dr4_ld3_29_47(x):
-  y = 90*(x*x) - 104*x + 29
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((29+(90*(x-1)))*n) 
-    new2_y = y+((47+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-######################################################
-
-
-######################################################
-
-#18, 202, 566, 1110, 1834, 2738, 3822, 5086, 6530, 8154, 9958
-#new
-def dr4_ld3_23_71(x):
-  y = 90*(x*x) - 86*x + 14
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((23+(90*(x-1)))*n)
-    new2_y = y+((71+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-#############################################################
-
-##############################################################
-
-#24, 208, 572, 1116, 1840, 2744, 3828, 5092, 6536, 8160, 9964
-#new
-def dr4_ld3_41_53(x):
-  y = 90*(x*x) - 86*x + 20
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((41+(90*(x-1)))*n) 
-    new2_y = y+((53+(90*(x-1)))*n)
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
- 
-#11, 177, 523, 1049, 1755, 2641, 3707, 4953, 6379, 7985, 9771
-#new
-def dr4_ld3_17_59(x):
-  y = 90*(x*x) - 104*x + 25
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((17+(90*(x-1)))*n)
-    new2_y = y+((59+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
-
-#76, 332, 768, 1384, 2180, 3156, 4312, 5648, 7164, 8860
-#new
-def dr4_ld3_77_89(x):
-  y = 90*(x*x) - 14*x 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((77+(90*(x-1)))*n) 
-    new2_y = y+((89+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-########################################################
-
-
-########################################################
-#6, 182, 538, 1074, 1790, 2686, 3762
-#new
-def dr4_ld3_7_79(x):
-  y = 90*(x*x) - 94*x + 10
-  if y > new_test:
-    return
-  #print y, "7,79"
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((7+(90*(x-1)))*n)
-    new2_y = y+((79+(90*(x-1)))*n) 
-    #print new_y, "7"
-    #print new2_y, "79"
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-######################################################
-
-#####################################################
-
-#29, 223, 597, 1151, 1885, 2799, 3893, 5167, 6621, 8255
-#new
-def dr4_ld3_43_61(x):
-  y = 90*(x*x) - 76*x + 15  
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((43+(90*(x-1)))*n)
-    new2_y = y+((61+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-   
-#########################################################
-
-    
-for x in xrange(1, 100): 
- 
-    dr2_ld1_11_91(x) #
-    dr2_ld1_19_29(x)  #
-    dr2_ld1_37_83(x) #
-    dr2_ld1_47_73(x) #
-    dr2_ld1_13_77(x) #
-    dr2_ld1_31_41(x) #
-    dr2_ld1_49_59(x) #
-    dr2_ld1_23_67(x) #
-    dr2_ld1_7_53(x) #
-    dr2_ld1_17_43(x) #
-    dr2_ld1_61_71(x) #
-    dr2_ld1_79_89(x) #
-	
- 
-    dr4_ld3_13_91(x)#
-    dr4_ld3_19_67(x) #
-    dr4_ld3_37_49(x) #
-    dr4_ld3_31_73(x) #
-    dr4_ld3_11_83(x)#
-    dr4_ld3_29_47(x) #
-    dr4_ld3_23_71(x)#
-    dr4_ld3_41_53(x) #
-    dr4_ld3_17_59(x) #
-    dr4_ld3_77_89(x)#
-    dr4_ld3_7_79(x)#
-    dr4_ld3_43_61(x) #
-    
-    
-
-def bash_command(cmd):
-    subprocess.Popen(cmd, shell=True)
-bash_command('sort -n composite1.csv -o composite2.csv')
-time.sleep(0.2) #make sure subprocess has finished
-
-z=1000
-f=open("composite2.csv")
-for i in range(z):
-  line=f.next().strip()
-  print line
-  #print "not prime", line
-f.close()
-
-proceed = raw_input("shall we proceed to print the next 10,000 primes?")
-if proceed == "yes":
-  pass
-if proceed == "no":
-  execfile("ElderSieve.py")
-  quit("goodbye")
-
-#run this code to compare to http://oeis.org/A201804/b201804.txt
-with open("composite2.csv") as f:
-    rd=f.readlines()
-    x=[t.strip("\n") for t in rd]
-    for i in range(0, 37188):
-        if str(i) not in x:
-            print ("{} is twin prime".format(i))
-
-
-execfile("ElderSieve.py")
-
-
-
-
-
-
-
-
-
+# #Use this code to search for Arithmetic Progressions of Twin Primes.
+# A = list_A224854    # in sorted order
+# Aset = set(A)
+# print len(A)
+# 
+# for d in xrange(1, 500):
+#     already_seen = set()
+#     for a in A:
+#         if a not in already_seen:
+#             b = a
+#             count = 1
+#             while b + d in Aset:
+#                 b += d
+#                 count += 1
+#                 already_seen.add(b)
+#             if count >= 5:
+#                 print "found %d items in %d .. %d .. with gap = %d" % (count, a, b, d)
+#                 #e.extend(d)
+#             # collect here the largest 'count'
