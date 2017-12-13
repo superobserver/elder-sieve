@@ -1,7 +1,7 @@
 #!/usr/local/env python #python 2.7
 #Sieve for generating sequence A224854
 
-new_test = 1000000
+new_test = 100000
 a = range(0, new_test)
 
 
@@ -74,9 +74,18 @@ for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 
 
 
 #print a  
-list_A224854 = [i for i in a if i !=0]
-print list_A224854 
-print "These are the first %d terms of Sloane's A224854." % len(list_A224854)
+
+#print a[0]
+if a[0] == 0:
+  list_A224854 = [i for i in a if i !=0]
+  list_A224854.insert(0, 0)
+  print list_A224854
+  print "These are the first %d terms of Sloane's A224854." % len(list_A224854)
+if a[0] > 0:
+  list_A224854 = [i for i in a if i !=0]
+  print list_A224854
+  print "These are the first %d terms of Sloane's A224854." % len(list_A224854)
+
 
 # #Use this code to search for Arithmetic Progressions of Twin Primes.
 # A = list_A224854    # in sorted order
@@ -97,3 +106,4 @@ print "These are the first %d terms of Sloane's A224854." % len(list_A224854)
 #                 print "found %d items in %d .. %d .. with gap = %d" % (count, a, b, d)
 #                 #e.extend(d)
 #             # collect here the largest 'count'
+
