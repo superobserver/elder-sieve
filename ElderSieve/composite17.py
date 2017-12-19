@@ -1,7 +1,7 @@
 #!/usr/local/env python #python 2.7
 #Integration leaves residue sequence A202115
 
-new_test = 1000
+new_test = 1000000
 a = range(0, new_test)
 
 def drLD_min_min(x, l, m, z, o):      
@@ -41,7 +41,7 @@ def drLD_min_plus(x, l, m, z, o):
     else:
       pass
 
-for x in xrange(1, 8): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 = 336; 100,000,000 = 1056; 1,000,000,000 = 
+for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 = 336; 100,000,000 = 1056; 1,000,000,000 = 
   
     drLD_min_min(x, 72, 1, 17, 91)   #17,91
     drLD_min_plus(x, 108, 29, 19, 53) #19,53
