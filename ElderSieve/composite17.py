@@ -72,7 +72,7 @@ if a[0] > 0:
 # Aset = set(A)
 # print len(A)
 # 
-# for d in xrange(1, 3):
+# for d in xrange(1, 500):
 #     already_seen = set()
 #     for a in A:
 #         if a not in already_seen:
