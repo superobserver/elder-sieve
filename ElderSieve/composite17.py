@@ -1,281 +1,88 @@
 #!/usr/local/env python #python 2.7
 #Integration leaves residue sequence A202115
-import sys
-import csv
-import time
-import subprocess
 
-dump = open("composite1.csv", "w")
-new_test = 40000
+new_test = 1000
+a = range(0, new_test)
 
-
-####################################################
-#new 
-#17, 215, 593, 1151, 1889, 2807, 3905, 5183, 6641, 8279, 10097
-def dr8_ld7_17_91(x):
-  y = 90*(x*x) - 72*x - 1 
-  if y > new_test:
+def drLD_min_min(x, l, m, z, o):      
+  y = 90*(x*x) - l*x - m 
+  if y < new_test:
+    #print y, x
+    a[y] = 0
+  else:
     return
-  #print "17,91", y
-  dump.write(str(y) + "\n")
-  for n in range(1, new_test):
-    new_y = y+((17+(90*(x-1)))*n)
-    new2_y = y+((91+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+  for n in xrange (1, new_test):
+    new_y = y+((z+(90*(x-1)))*n)
+    if new_y < new_test:
+      a[new_y] = 0
+    new2_y = y+((o+(90*(x-1)))*n)   
+    if new2_y < new_test:   
+      a[new2_y] = 0      
+    if new_y > new_test:
+      return
+    else:
+      pass
 
-###################################################
-#new
-#11, 173, 515, 1037, 1739, 2621, 3683, 4925, 6347, 7949, 9731
-def dr8_ld7_19_53(x):
-  y = 90*(x*x) - 108*x + 29
-  if y > new_test:
+def drLD_min_plus(x, l, m, z, o):      
+  y = 90*(x*x) - l*x + m 
+  if y < new_test:
+    a[y] = 0
+  else:
     return
-  dump.write(str(y) + "\n") 
-  for n in range (1, new_test):
-    new_y = y+((19+(90*(x-1)))*n)
-    new2_y = y+((53+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################
+  for n in xrange (1, new_test):
+    new_y = y+((z+(90*(x-1)))*n)
+    if new_y < new_test:
+      a[new_y] = 0
+    new2_y = y+((o+(90*(x-1)))*n)   
+    if new2_y < new_test:    
+      a[new2_y] = 0      
+    if new_y > new_test:
+      return
+    else:
+      pass
 
-###################################################
-#29, 227, 605, 1163, 1901, 2819, 3917, 5195, 6653, 8291
-#new
-def dr8_ld7_37_71(x):
-  y = 90*(x*x) - 72*x + 11
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((37+(90*(x-1)))*n)
-    new2_y = y+((71+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-##################################################
+for x in xrange(1, 8): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 = 336; 100,000,000 = 1056; 1,000,000,000 = 
+  
+    drLD_min_min(x, 72, 1, 17, 91)   #17,91
+    drLD_min_plus(x, 108, 29, 19, 53) #19,53
+    drLD_min_plus(x, 72, 11, 37, 71)   #37,71
+    drLD_min_plus(x, 18, 0, 73, 89)   #73,89
+    drLD_min_plus(x, 102, 20, 11, 67)  #11,67
+    drLD_min_plus(x, 138, 52, 13, 29) #13,29
+    drLD_min_plus(x, 102, 28, 31, 47)  #31,47
+    drLD_min_plus(x, 48, 3, 49, 83)  #49,83
+    drLD_min_plus(x, 78, 8, 23, 79)  #23,79
+    drLD_min_plus(x, 132, 45, 7, 41) #7,41
+    drLD_min_plus(x, 78, 16, 43, 59)   #43,59
+    drLD_min_plus(x, 42, 4, 61, 77)   #61,77
 
-##################################################
-#72, 324, 756, 1368, 2160, 3132, 4284, 5616, 7128, 8820
-#new 
-def dr8_ld7_73_89(x):
-  y = 90*(x*x) - 18*x 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((73+(90*(x-1)))*n)
-    new2_y = y+((89+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-###################################################	  
-
-###################################################
-#8, 176, 524, 1052, 1760, 2648, 3716, 4964, 6392, 8000, 9788
-#new
-def dr8_ld7_11_67(x):
-  y = 90*(x*x) - 102*x + 20  
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((11+(90*(x-1)))*n)
-    new2_y = y+((67+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-####################################################
-
-####################################################
-#21, 207, 573, 1119, 1845, 2751, 3837, 5103, 6549, 8175, 9981
-#new
-def dr8_ld7_13_29(x):
-  y = 90*(x*x) - 138*x + 52
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((13+(90*(x-1)))*n) 
-    new2_y = y+((29+(90*(x-1)))*n) 
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-######################################################
-
-######################################################
-
-#16, 184, 532, 1060, 1768, 2656, 3724, 4972, 6400, 8008, 9796
-#new
-def dr8_ld7_31_47(x):
-  y = 90*(x*x) - 102*x + 28
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((31+(90*(x-1)))*n)
-    new2_y = y+((47+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-#############################################################
-
-##############################################################
-
-#45, 267, 669, 1251, 2013, 2955, 4077, 5379, 6861, 8523
-#new
-def dr8_ld7_49_83(x):
-  y = 90*(x*x) - 48*x + 3 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((49+(90*(x-1)))*n) 
-    new2_y = y+((83+(90*(x-1)))*n)
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
- 
-#20, 212, 584, 1136, 1868, 2780, 3872, 5144, 6596, 8228, 10040
-#new
-def dr8_ld7_23_79(x):
-  y = 90*(x*x) - 78*x + 8 
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((23+(90*(x-1)))*n)
-    new2_y = y+((79+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-############################################################
-
-########################################################
-
-#3, 141, 459, 957, 1635, 2493, 3531, 4749, 6147, 7725, 9483
-#new
-def dr8_ld7_7_41(x):
-  y = 90*(x*x) - 132*x + 45
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((7+(90*(x-1)))*n) 
-    new2_y = y+((41+(90*(x-1)))*n)  
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-########################################################
-
-########################################################
-#28, 220, 592, 1144, 1876, 2788, 3880, 5152, 6604, 8236, 10048
-#new
-def dr8_ld7_43_59(x):
-  y = 90*(x*x) - 78*x + 16
-  if y > new_test:
-    return
-  #print y, "7,59"
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((43+(90*(x-1)))*n)
-    new2_y = y+((59+(90*(x-1)))*n) 
-    #print new_y, "7"
-    #print new2_y, "59"
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-######################################################
-
-#####################################################
-
-#52, 280, 688, 1276, 2044, 2992, 4120, 5428, 6916, 8584
-#new
-def dr8_ld7_61_77(x):
-  y = 90*(x*x) - 42*x + 4
-  if y > new_test:
-    return
-  dump.write(str(y) + "\n")
-  for n in range (1, new_test):
-    new_y = y+((61+(90*(x-1)))*n)
-    new2_y = y+((77+(90*(x-1)))*n)   
-    if new_y < new_test: 
-        dump.write(str(new_y) + "\n")
-    if new2_y < new_test:
-        dump.write(str(new2_y) + "\n")
-   
-#########################################################
-
-for x in xrange(1, 100): 
- 
-    dr8_ld7_17_91(x)#  
-    dr8_ld7_19_53(x)# 
-    dr8_ld7_37_71(x)# 
-    dr8_ld7_73_89(x)# 
-    dr8_ld7_11_67(x)# 
-    dr8_ld7_13_29(x)# 
-    dr8_ld7_31_47(x)# 
-    dr8_ld7_49_83(x)# 
-    dr8_ld7_23_79(x)# 
-    dr8_ld7_7_41(x)# 
-    dr8_ld7_43_59(x)# 
-    dr8_ld7_61_77(x)# 
-
-    
-
-def bash_command(cmd):
-    subprocess.Popen(cmd, shell=True)
-bash_command('sort -n composite1.csv -o composite2.csv')
-time.sleep(0.2) #make sure subprocess has finished
-
-z=1000
-f=open("composite2.csv")
-for i in range(z):
-  line=f.next().strip()
-  print line
-  #print "not prime", line
-f.close()
-
-proceed = raw_input("shall we proceed to print the next 10,000 primes?")
-if proceed == "yes":
-  pass
-if proceed == "no":
-  execfile("ElderSieve.py")
-  quit("goodbye")
-
-#run this code to compare to http://oeis.org/A201804/b201804.txt
-with open("composite2.csv") as f:
-    rd=f.readlines()
-    x=[t.strip("\n") for t in rd]
-    for i in range(0, 37188):
-        if str(i) not in x:
-            print ("{} is prime".format(i))
-
-
-execfile("ElderSieve.py")
-
-
-
-
-
-
-
-
-
+#print a  
+if a[0] == 0:
+  list_A202115 = [i for i in a if i !=0]
+  list_A202115.insert(0, 0)
+  print list_A202115
+  print "These are the first %d terms of Sloane's A202115." % len(list_A202115)
+if a[0] > 0:
+  list_A202115 = [i for i in a if i !=0]
+  print list_A202115
+  print "These are the first %d terms of Sloane's A202115." % len(list_A202115)
+  
+# #Use this code to search for Arithmetic Progressions of Twin Primes.
+# A = list_A202115    # in sorted order
+# Aset = set(A)
+# print len(A)
+# 
+# for d in xrange(1, 3):
+#     already_seen = set()
+#     for a in A:
+#         if a not in already_seen:
+#             b = a
+#             count = 1
+#             while b + d in Aset:
+#                 b += d
+#                 count += 1
+#                 already_seen.add(b)
+#             if count >= 5:
+#                 print "found %d items in %d .. %d .. with gap = %d" % (count, a, b, d)
+#                 #e.extend(d)
+#             # collect here the largest 'count'
