@@ -37,11 +37,11 @@ for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 
     drLD(x, 48, 6, 61, 71)   #61,71
     drLD(x, 12, 0, 79, 89)   #79,89
 
-print a  #uncomment this line to see the full list (primes and 0=composite)
+#print a  #uncomment this line to see the full list (primes and 0=composite)
 if a[0] == 0:
   list_A201804 = [i for i in a if i !=0]
   list_A201804.insert(0, 0)
-#  print list_A201804
+  print list_A201804
   print "These are the first %d terms of Sloane's A201804." % len(list_A201804)
 if a[0] > 0:
   list_A201804 = [i for i in a if i !=0]
