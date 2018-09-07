@@ -2,7 +2,7 @@
 #Sieve for generating sequence A201804
 
 new_test = 1000000
-a = range(0, new_test)
+a = [None]*int(new_test)
 
 def drLD(x, l, m, z, o):      
   y = 90*(x*x) - l*x + m 
@@ -37,16 +37,10 @@ for x in xrange(1, 108): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 
     drLD(x, 48, 6, 61, 71)   #61,71
     drLD(x, 12, 0, 79, 89)   #79,89
 
-#print a  #uncomment this line to see the full list (primes and 0=composite)
-if a[0] == 0:
-  list_A201804 = [i for i in a if i !=0]
-  list_A201804.insert(0, 0)
-  print list_A201804
-  print "These are the first %d terms of Sloane's A201804." % len(list_A201804)
-if a[0] > 0:
-  list_A201804 = [i for i in a if i !=0]
-  print list_A201804
-  print "These are the first %d terms of Sloane's A201804." % len(list_A201804)
+list_A201804 = [i for i,x in enumerate(a) if x != 0]
+#print a  #uncomment this line to see the full list (None=primes and 0=composite)
+print list_A201804
+print "%d is the %dth term of Sloane's A201804." % (list_A201804[-1], len(list_A201804))
   
 # #Use this code to search for Arithmetic Progressions of Twin Primes.
 # A = list_A201804    # in sorted order
