@@ -25,7 +25,7 @@ def drLD(x, z):
           pass
 
 
-for x in xrange(1, 100): # 10000 = 12; 100000 = 36; 1,000,000 = 108; 10,000,000 = 336; 100,000,000 = 1056; 1,000,000,000 = 
+for x in xrange(1, 100): # untested range. will update with function
   
       drLD(x, 7)  #11,91          (first cancel = 11) 90*(x*x) 78x +(-1)
       drLD(x, 11)  #11,91          (first cancel = 11) 90*(x*x) 78x +(-1)
