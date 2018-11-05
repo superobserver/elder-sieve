@@ -7,10 +7,10 @@ new_test = 1000
 a = [None]*int(new_test)
 
 def drLD(x, z):      
-  """Non-Naive Sieve of Eratosthenes"""
+  """Elder Sieve in A000040"""
   
   new_y = z+(90*(x-1)) 
-  print x
+  print x #pound this to cease watching the algorithm cycle
   if new_y < new_test:
     if a[new_y] == None:
       a[new_y] = 2  
@@ -53,12 +53,12 @@ for x in xrange(1, 100): # untested range. will update with function
       drLD(x, 91)  #11,91          (first cancel = 11) 90*(x*x) 78x +(-1)
       
       
-list_A201804 = [i for i,x in enumerate(a) if x > 1]
+list_A000040 = [i for i,x in enumerate(a) if x > 1]
 #list_test = [i for i in a if i > 1]
 #print list_test
-print list_A201804
-print len(list_A201804)
-#print a
+print list_A000040
+print len(list_A000040)
+#print 
 
 # 
 # def primes_sieve(limit):
