@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+#use timidity output.mid to play audio in Terminal
+#use timidity output.mid -Ow -o primes.wav in Terminal to convert *.mid to *.wav
 
 from midiutil.MidiFile import MIDIFile
 
